@@ -7,14 +7,13 @@
   "scripts": {
     "leak-check": "node scripts/leak-check.mjs",
     "validate:frontmatter": "node scripts/validate-frontmatter.mjs",
-    "check": "pnpm leak-check && pnpm validate:frontmatter"
+    "check": "npm run leak-check && npm run validate:frontmatter"
   },
   "devDependencies": {
     "ajv": "^8.17.1",
     "globby": "^14.0.2",
     "gray-matter": "^4.0.3"
   },
-  "packageManager": "pnpm@9.14.4",
   "engines": {
     "node": ">=20"
   }

@@ -57,6 +57,12 @@ for (const file of files) {
   const raw = await readFile(file, 'utf8')
   const { data } = matter(raw)
 
+  // YAML auto-parses ISO date strings into Date objects. Coerce back to string
+  // for validation against the locked YYYY-MM-DD pattern.
+  if (data.date instanceof Date) {
+    data.date = data.date.toISOString().slice(0, 10)
+  }
+
   if (!validate(data)) {
     errorCount++
     console.error(`\n${file}`)
