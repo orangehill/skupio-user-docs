@@ -1,0 +1,98 @@
+---
+date: 2026-06-01
+topic: reference-errors
+status: living
+audience: [operator, end-user]
+authors: [tihomir-opacic, claude-opus-4-7]
+companions:
+  - ../tutorials/your-first-scrape.mdx
+  - ./rate-limits.mdx
+---
+
+# Errors and what they mean
+
+Common error messages Skupio surfaces, what causes them, and how to fix or work around each. Organised by where the message appears.
+
+## In the Chrome extension
+
+### "LinkedIn session not found"
+
+Skupio cannot see a logged-in LinkedIn session in this browser. Sign in to LinkedIn in the same browser profile, refresh the page, then click the Skupio icon again. If the message persists, check that LinkedIn shows you as signed in.
+
+### "Search has no results"
+
+Your filter combination matches zero people on this LinkedIn page. Loosen one filter (geo, seniority, headcount) and reload the search. Skupio collects only what LinkedIn renders.
+
+### "Search has more than 1000 results"
+
+LinkedIn caps visible search results at the first 1000 across all pages. Narrow your filters to bring the total under 1000 — otherwise you cannot reach the last leads in your audience. Common ways to narrow: add a job title filter, restrict the geography, or filter by company headcount.
+
+### "Daily collection limit reached"
+
+You have hit your plan's daily scrape limit. The counter resets at midnight UTC. See **[Rate limits](/reference/rate-limits)** for the cap on each plan.
+
+### "Too many requests — slow down"
+
+LinkedIn returned a soft rate-limit signal. Skupio pauses automatically and resumes after a cooldown. If this keeps happening, lower the **Scroll speed** in Skupio's extension settings.
+
+## In the dashboard
+
+### "Lead has no work email"
+
+Skupio could not find a deliverable work email for this lead. Three causes:
+
+- The lead's profile has no work history that lets us match a corporate domain.
+- The corporate domain has email policies that block address-finder providers.
+- The lead's email exists but failed our deliverability check (too high a bounce risk).
+
+You can click **Override** on a lead and paste an email you found yourself. The campaign will send to it without re-verifying.
+
+### "Email failed validation"
+
+The lead has a candidate email, but it failed the validity check. Skupio does not send to invalid addresses (it would burn your sender reputation). Either override with a known-good email or remove the lead.
+
+### "Bounce-back logged for this domain"
+
+A previous send to this domain bounced. Skupio's deliverability tuning automatically lowers confidence in that domain's emails for the next 30 days. New leads at the same company may show as **Pending re-verification** while we double-check.
+
+### "Workspace credit balance low"
+
+Your workspace has fewer than 100 enrichment credits left. Top up under **Settings → Credits**, or wait for your monthly plan refill if you are on a plan with credit allocation.
+
+### "Campaign cannot launch — sender mailbox not connected"
+
+Skupio sends through your Instantly account. Open **Settings → Email senders** and reconnect your Instantly integration. If you have not used Skupio with Instantly before, **[the first-scrape tutorial](/tutorials/your-first-scrape)** walks you through the setup.
+
+## In the inbox
+
+### "Reply could not be classified"
+
+The AI was not confident enough about the reply's intent (interested vs send later vs wrong person vs not interested vs out of office). The reply lands in the **Unclassified** bucket. Click any of the 5 intent tags on the reply to teach the classifier for next time.
+
+### "Reply override saved"
+
+Confirms your manual classification stuck. The classifier uses your overrides to improve over time within your workspace.
+
+## In email senders
+
+### "Instantly API key invalid"
+
+The API key you provided does not work against Instantly's API. Generate a fresh key in Instantly under **Settings → Integrations → API**, paste it back into Skupio, and click **Reconnect**.
+
+### "Instantly account suspended"
+
+Instantly reports your account as suspended. Skupio cannot push new campaigns to a suspended account. Resolve directly with Instantly support; once the account is active again, your Skupio campaigns will resume on the next scheduler tick.
+
+## Generic
+
+### "Something went wrong — please try again"
+
+A transient error you can usually retry. If the same action fails twice in a row, **[email us](mailto:hi@skupio.co?subject=Recurring%20error)** with the URL of the page, the action you took, and a screenshot if you have one. Include the request ID at the bottom of the error message if it shows one.
+
+### "Skupio is offline"
+
+Our API is unreachable from your browser. Check **[status.skupio.co](https://status.skupio.co)** for an active incident. If status looks green and you still see this, restart your browser and try again — most often this is a temporary network issue on your end.
+
+## Still stuck?
+
+[Email hi@skupio.co](mailto:hi@skupio.co?subject=Help%20with%20a%20Skupio%20error) with the error message and what you were doing. Include the page URL — we can usually narrow down the cause from that alone.

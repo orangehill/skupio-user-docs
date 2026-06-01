@@ -1,0 +1,87 @@
+---
+date: 2026-06-01
+topic: concept-why-skupio
+status: living
+audience: [end-user, operator]
+authors: [tihomir-opacic, claude-opus-4-7]
+companions:
+  - ./the-7-stage-workflow.mdx
+  - ../tutorials/your-first-scrape.mdx
+---
+
+# Why Skupio
+
+The decisions behind how Skupio is built. The same content lives at **[skupio.co/why-skupio](https://skupio.co/why-skupio)** in marketing-shaped form; this is the docs-shaped version for operators and evaluators who want the longer story.
+
+## Browser-first, by architecture
+
+Skupio's LinkedIn touch happens inside your own browser session, through the Chrome extension. There is no cloud-hosted LinkedIn session in our datacentres. There are no third-party IPs touching LinkedIn on your behalf.
+
+This matters in three ways:
+
+- **Account-flag risk.** A cloud tool that signs into LinkedIn from a datacentre IP looks, to LinkedIn, like a bot. A browser extension running in your own session looks, to LinkedIn, like you. The legal and technical posture is the same as any compliant LinkedIn plugin.
+- **Data flow.** Your LinkedIn cookies, your DM contents, your connection graph — none of these are transmitted to or stored on our servers. We see only the leads you choose to push into a campaign.
+- **Exit ramp.** If Skupio's API ever goes offline, the extension still works for collection and CSV export. Your pipeline does not depend on our uptime to keep your data.
+
+## End-to-end, in one workflow
+
+Most outbound stacks chain a scraper, an enricher, a verifier, an AI writer, a sender, an inbox classifier, and an analytics dashboard. Each tool gets a separate bill, a separate quota, a separate quirk to debug. The hand-offs are where leads disappear.
+
+Skupio runs **[the 7-stage workflow](/concepts/the-7-stage-workflow)** end-to-end so the hand-offs are internal:
+
+- One credentials surface.
+- One quota to track.
+- One bill.
+- One operator workflow.
+
+Your only external dependency is Instantly for the actual sending, because your sending infrastructure should stay under your control.
+
+## EU-hosted by default
+
+Skupio's API, dashboard, queue layer, and storage run in **Frankfurt, EU**. There is no US-primary infrastructure for customer data. For agencies with EU data residency requirements, the Agency tier supports workspace-level data residency commitments via DPA.
+
+## Privacy footprint
+
+The blast radius of a worst-case breach matters. Skupio's footprint is small by design:
+
+- **What we store:** workspace metadata, your scraped lead lists, your sequence drafts, your campaign analytics, your reply logs.
+- **What we don't store:** your LinkedIn session cookies, your LinkedIn DM bodies, your connection graph, your sending mailbox passwords.
+
+If we were ever breached, what's at risk is your campaign work — not your LinkedIn identity and not your sender infrastructure. That distinction is deliberate.
+
+## Operator-controlled retention
+
+- **Default retention** for raw scraped lead data: 90 days, then automatic deletion.
+- **Default retention** for leads you've actioned (added to a campaign): indefinite, but you can delete any time.
+- **Workspace owner** can shorten either default.
+- **Self-serve right-to-erasure**: delete a workspace from the dashboard; the cascade clears every scraped list, every sequence draft, every reply log within 7 days.
+
+## Tiered, published pricing
+
+Plans and limits are visible up front in **[Plans and limits](/reference/plans-and-limits)**. No "contact sales for pricing" gates on the core product. No agency tax, no per-seat surprises.
+
+The pricing reveals at v3.0 launch with Stripe checkout. Until then, beta users have grandfathered limits.
+
+## Audio-first creative iteration
+
+For the three studios (Offer, Audience, Sequence), you can record a 60-second voice memo and Claude Opus drafts the artifact. Voice is faster than the keyboard for creative iteration: you re-record the part that needs to change rather than retyping the whole thing.
+
+This is the single biggest change in how Skupio feels compared to most outreach tools. The AI listens to you, not the other way around.
+
+## What we won't do
+
+- We will not run a cloud LinkedIn session on a customer's behalf. The browser extension is the architecture, full stop.
+- We will not mirror your DMs or store your inbox contents in our cloud.
+- We will not replicate your connection graph into a database we control.
+- We will not sell, resell, or repackage your lead data.
+- We will not gate the core workflow behind "contact sales" pricing.
+
+## Compliance posture
+
+- **GDPR processor relationship**: Skupio is a data processor for the leads you upload into a workspace. Everything else (your LinkedIn session, your DMs, your network) stays in your browser.
+- **DPA available** on request before paid plans activate. Standard SCCs for any non-EU sub-processor we use.
+- **LinkedIn ToS**: we run as a browser extension in your own LinkedIn session — the same legal posture as any compliant LinkedIn plugin.
+
+## Questions
+
+The architecture decisions above are deliberate. If one of them feels off for your use case, **[email us](mailto:hi@skupio.co?subject=Architecture%20question)** — sometimes it's a workflow we should document better, sometimes it's a roadmap conversation.

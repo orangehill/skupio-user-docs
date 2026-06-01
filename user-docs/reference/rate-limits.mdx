@@ -1,0 +1,74 @@
+---
+date: 2026-06-01
+topic: reference-rate-limits
+status: living
+audience: [operator, end-user]
+authors: [tihomir-opacic, claude-opus-4-7]
+companions:
+  - ./plans-and-limits.mdx
+  - ./errors.mdx
+---
+
+# Rate limits
+
+How many leads you can collect per day, how many emails you can send, and the per-recipient-domain throttle that protects your sender reputation. Organised by what's limited and how to read the counter in the dashboard.
+
+## Daily lead collection (Chrome extension)
+
+| Plan | Leads per day | Behaviour at limit |
+|---|---|---|
+| Free | 50 | Collection pauses; resumes at midnight UTC. |
+| Starter | 500 | Same — pause and resume. |
+| Pro | 2,500 | Same. |
+| Agency | 10,000 | Same. |
+
+The counter is per **workspace**, not per user. If two teammates collect from the same workspace, they share the daily quota.
+
+You can see today's remaining count under **Dashboard → Lead lists** (top-right counter).
+
+## Hourly collection ceiling
+
+To stay within LinkedIn's natural usage patterns, Skupio also enforces an **hourly ceiling** that is 1/8 of the daily cap — roughly 6 to 1,250 leads per hour depending on your plan. The extension pauses if you exceed the hour-rolling window.
+
+## Per-recipient-domain send throttle
+
+When campaigns send through Instantly, Skupio respects a **default ceiling of 5 messages per recipient domain per day**. This protects your sender reputation: spraying 100 emails into one company's MX server in a day is a fast way to land on a blocklist.
+
+You can override the per-domain ceiling under **Settings → Integrations → Rate limits** if you have a contractual relationship with the recipient domain (e.g. a partner you have already onboarded). Setting the ceiling to a higher number is your call and your risk.
+
+## Email enrichment quota
+
+Each lead-list run consumes **enrichment credits** to find work emails:
+
+- 1 credit per email found and verified
+- 0 credits per lead skipped (no profile match or no candidate email)
+- 0 credits if the email is already in your workspace's cache (we deduplicate by lead URL)
+
+Free plan: 100 credits per month. Paid plans include allocations that scale with the tier — see **[Plans and limits](/reference/plans-and-limits)**.
+
+You can monitor consumption under **Settings → Credits**. When the balance drops under 100 you'll see a warning banner.
+
+## Email validation quota
+
+Each candidate email goes through a deliverability check before it is added to a lead's record. Validation is **bundled with enrichment** on all paid plans (no separate quota). On the Free plan, you have 200 validations per month included.
+
+A validation that returns **catch-all** counts as one validation. A validation that returns **invalid** counts as one validation. A validation that hits our cache (same email validated in the last 90 days) is free.
+
+## API rate limits
+
+If you script against Skupio's API directly (paid plans), the default limit is **60 requests per minute per workspace**, with a burst of 120. Exceeding it returns HTTP 429 with a `Retry-After` header.
+
+These limits are per **workspace API key**, not per user. Generate per-environment keys under **Settings → API keys**.
+
+The public API ships in v3.1. Until then, scripted access is by request only — **[email us](mailto:hi@skupio.co?subject=API%20access)** if you need it.
+
+## How to read a limit warning
+
+Banners and toasts in the dashboard tell you which limit you hit:
+
+- **"Daily collection limit reached"** → wait until midnight UTC, or upgrade.
+- **"Domain send throttle reached for example.com"** → tomorrow we'll send more to that domain; or override under Settings.
+- **"Credit balance low (under 100)"** → top up under Settings → Credits.
+- **"API rate limit — retry in 30 seconds"** → your script is bursting; add a delay between calls.
+
+If a limit is blocking you and the workaround is not obvious, **[email us](mailto:hi@skupio.co?subject=Rate%20limit)** with the exact message.

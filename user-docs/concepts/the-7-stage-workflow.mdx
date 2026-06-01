@@ -1,0 +1,72 @@
+---
+date: 2026-06-01
+topic: concept-7-stage-workflow
+status: living
+audience: [end-user, operator]
+authors: [tihomir-opacic, claude-opus-4-7]
+companions:
+  - ../tutorials/your-first-scrape.mdx
+  - ./why-skupio.mdx
+---
+
+# The 7-stage workflow
+
+Skupio is built around a single loop, from a value proposition to a launched email campaign. Seven stages, and you can pause at any of them.
+
+## The stages
+
+1. **Offer** — what you're selling, who it's for, what changes when they buy.
+2. **Audience** — the persona, expressed as the LinkedIn search filters that find them.
+3. **Collect** — the Chrome extension pulls those leads into a workspace lead list.
+4. **Enrich** — for each lead, Skupio finds and verifies a deliverable work email.
+5. **Personalise** — the AI authors a 5-step sequence, customised per lead.
+6. **Launch** — the campaign goes live in Instantly under your sending domain.
+7. **Monitor** — replies come back, the AI classifies intent, you triage and respond.
+
+The stages run in order, but you stay in control at every step. The AI drafts; you approve.
+
+## Where each stage lives
+
+| Stage | Where you do it | What's locked, what's editable |
+|---|---|---|
+| Offer | **Offer studio** in the dashboard | Voice → Claude drafts the offer; you edit any sentence, regenerate on request |
+| Audience | **Audience studio** | Voice or text → AI drafts persona filters; you adjust titles, seniority, geo |
+| Collect | **Chrome extension** on LinkedIn | The extension scrolls and collects against your filters; you watch and stop anytime |
+| Enrich | **Background** (no UI) | Skupio finds and verifies emails; results visible per lead in the lead list |
+| Personalise | **Sequence studio** | AI drafts 5 emails per lead; you edit per step, run A/B variants |
+| Launch | **Campaigns** | Two-phase launch (test cohort → main send); you approve before main goes |
+| Monitor | **Inbox + Campaign analytics** | Replies auto-classify into 5 buckets; you override the AI's call with one click |
+
+## The pattern: sample-then-trust
+
+Every stage shows you a **sample** of what comes next before committing. The offer studio drafts a 1-paragraph offer; you read it before you approve. The audience studio shows a sample of 5 leads matching the persona before you collect 500 of them. The sequence studio writes the first email for one lead; you read it before authorising the AI to write 5 emails for 50 leads.
+
+We call this **sample-then-trust**. The AI does the work; you stay in the loop without micromanaging.
+
+## The pattern: audio-first iteration
+
+For the three studios (Offer, Audience, Sequence) you can record a 60-second voice memo describing what you want. Skupio transcribes it, Claude drafts the artifact, and the studio renders the result side-by-side with the transcript. If something is off, you re-record the bit that needs to change rather than typing — voice is faster for creative iteration than the keyboard.
+
+## The pattern: mixed interaction model
+
+Each studio is a three-column layout: the AI's draft on the left, the rendered artifact in the middle, the iteration history on the right. You can edit by typing in the middle or by re-recording on the left. The right column is your audit trail: every revision, who made it, when.
+
+## Why one loop instead of seven tools
+
+Most cold-outreach stacks chain seven tools: a scraper, an enricher, a verifier, an AI writer, a sender, an inbox classifier, an analytics dashboard. Each tool gets a separate bill, a separate API key, a separate quirk. The hand-offs are where leads get lost.
+
+Skupio runs the seven stages end-to-end so the hand-offs are internal. Your only external dependency is Instantly for the actual sending — because your sending infrastructure should stay under your control, with deliverability you can audit.
+
+## What's deliberately not in the loop
+
+- **Cold-call dialling.** Skupio is for cold email. Voice is its own discipline.
+- **CRM sync.** We export to CSV; you push to your CRM on your schedule. Native CRM connectors land in v3.1.
+- **Inbound lead capture.** Skupio is outbound-first.
+- **Multi-channel orchestration.** The 5-step sequence is email only.
+
+If any of those four are critical to your stack, **[email us](mailto:hi@skupio.co?subject=Workflow%20question)** — sometimes the workaround is a one-click export, sometimes it is a roadmap conversation.
+
+## Next steps
+
+- **[Your first scrape and campaign](/tutorials/your-first-scrape)** — the tutorial walks all 7 stages.
+- **[Why Skupio](/concepts/why-skupio)** — the architecture decisions behind the loop.

@@ -1,0 +1,7 @@
+# Every content + script change requires maintainer review.
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+*.mdx                @tihomiro
+/user-docs/          @tihomiro
+/scripts/            @tihomiro
+/.github/            @tihomiro

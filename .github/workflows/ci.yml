@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  pull_request:
+    paths:
+      - 'user-docs/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/ci.yml'
+  push:
+    branches: [main, master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: leak-check (no env-var names, no internal class paths)
+        run: pnpm leak-check
+      - name: validate:frontmatter (Skupio convention)
+        run: pnpm validate:frontmatter

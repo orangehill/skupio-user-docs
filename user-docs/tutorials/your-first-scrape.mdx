@@ -1,0 +1,113 @@
+---
+date: 2026-06-01
+topic: tutorial-your-first-scrape
+status: living
+audience: [end-user]
+authors: [tihomir-opacic, claude-opus-4-7]
+companions:
+  - ../concepts/the-7-stage-workflow.mdx
+  - ../reference/rate-limits.mdx
+---
+
+# Your first scrape and campaign
+
+This tutorial walks you through the full Skupio loop: install the extension, pick an audience, collect 50 leads, write a 5-step email sequence with the AI, and push the campaign live in Instantly.
+
+**Time to complete:** about 30 minutes.
+
+**You'll need:**
+
+- A Sales Navigator or Free LinkedIn account.
+- An Instantly account (the free tier is enough to send).
+- About 50 prospects you want to reach.
+
+**You'll end up with:** one live email campaign sending warm, personalised outreach to 50 leads.
+
+## Before you start
+
+Skupio runs in your browser. It uses the same LinkedIn session you already use, against your own IP. No cloud-hosted impersonation, no proxy IPs, no mirror of your DMs. Your LinkedIn cookies stay on your machine.
+
+If that distinction matters to you, the why is in **[Why Skupio](/concepts/why-skupio)**.
+
+## Step 1 — Install the Chrome extension
+
+1. Visit the **[Skupio extension page in the Chrome Web Store](https://chrome.google.com/webstore/detail/skupio)**.
+2. Click **Add to Chrome**, then confirm.
+3. Pin the Skupio icon to your toolbar so it shows on every tab.
+
+The extension loads on LinkedIn pages only. You will not see it elsewhere.
+
+## Step 2 — Sign in to Skupio
+
+1. Click the Skupio icon in your toolbar.
+2. Choose **Sign in** and complete the email link flow.
+3. After signing in, the icon turns orange. You are connected to your Skupio workspace.
+
+If you do not have a workspace yet, the sign-in flow creates one for you.
+
+## Step 3 — Open a LinkedIn search
+
+The extension activates when you are on a search results page.
+
+- **Sales Navigator users:** open a Lead Search and apply your filters (titles, seniority, industry, geo).
+- **Free LinkedIn users:** open the People search and apply filters.
+
+You should see between 25 and 1000 results. If you have more, narrow your filters — Skupio collects what is visible on the current page set.
+
+## Step 4 — Start the collection
+
+1. Click the Skupio icon. The Skupio panel slides in on the right.
+2. Choose **Collect from this search**.
+3. Pick a target count. Start with 50 for your first run.
+4. Click **Start**.
+
+Skupio scrolls the page on a natural cadence and pulls leads into your workspace as it goes. You can watch the count tick up in the panel. Do not close the tab while it runs — collection happens in this session.
+
+When it finishes, the panel shows a **Done** state. Your leads are in the **Lead lists** section of the dashboard.
+
+## Step 5 — Open the dashboard
+
+1. Click **Open dashboard** from the Skupio panel, or visit **[app.skupio.co](https://app.skupio.co)**.
+2. Find your new lead list under **Lead lists**.
+3. Click the list to preview the 50 leads.
+
+The list shows job title, company, location, and a confidence score for each lead's work email. Emails that have not been verified yet show as **Pending**.
+
+## Step 6 — Define your offer
+
+Skupio uses your offer to write the email sequence.
+
+1. In the dashboard sidebar, choose **Offer studio**.
+2. Click **New offer**.
+3. Either type your offer or click the microphone and **record a 60-second voice memo** explaining what you sell, who it is for, and what changes when they buy.
+4. Click **Generate**.
+
+The AI drafts an offer doc. Read it, tweak anything that does not match how you talk about your product, and **Save**.
+
+## Step 7 — Author the sequence
+
+1. From the lead list, click **Launch campaign**.
+2. Pick your offer.
+3. Choose **5-step sequence** and click **Generate**.
+4. The AI drafts five emails: an intro, two follow-ups, a value-add, and a soft close. Each email is personalised per lead based on their title and company.
+
+You can edit any step in place. Click an email to open it; change a sentence, rewrite the subject line, or regenerate the whole step.
+
+## Step 8 — Push to Instantly
+
+1. When the sequence reads well, click **Send to Instantly**.
+2. Skupio prompts you to connect Instantly the first time. Follow the link, sign in, paste your Instantly API key back into Skupio.
+3. Pick a sending mailbox (or several, for load balancing).
+4. Skupio creates the campaign in your Instantly account and launches it in **two phases**: a small test cohort first, then the main send a few hours later if the test goes well.
+
+You will see the campaign status in both Skupio (under **Campaigns**) and Instantly (under **Campaigns**). Replies surface in both inboxes.
+
+## What you just built
+
+You have a live email campaign reaching 50 leads with a personalised 5-step sequence, sent from your Instantly mailbox under your domain. Replies come back to your inbox. Skupio classifies each reply (interested, send later, wrong person, not interested, out of office) so you can triage faster.
+
+## Next steps
+
+- **[How to handle bounces and verify what's working](/reference/errors)** — if any of your first 50 sends bounces.
+- **[The 7-stage workflow](/concepts/the-7-stage-workflow)** — how the studios fit together for your next campaign.
+- **[Email us](mailto:hi@skupio.co)** — questions, suggestions, anything that confused you in this tutorial.
